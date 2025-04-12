@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodManagament.View.EditPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Edycja potrawy" FontSize="32" HorizontalOptions="Center" FontAttributes="Bold" />
+
+            <Image Source="{Binding ImageUrl}" WidthRequest="150" HeightRequest="150" Aspect="AspectFill" />
+
+            <Entry Text="{Binding Name}" FontSize="18" Placeholder="Nazwa potrawy" />
+
+            <Entry Text="{Binding Description}" FontSize="16" Placeholder="Opis potrawy" />
+
+            <Entry Text="{Binding Price}" FontSize="16" Placeholder="Cena" Keyboard="Numeric" />
+
+            <Label Text="Składniki:" FontSize="18" FontAttributes="Bold" />
+
+            <CollectionView ItemsSource="{Binding Ingredients}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Span="2" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="0,5" CornerRadius="10" BackgroundColor="#F7F7F7" HasShadow="True">
+                            <Label Text="{Binding}" FontSize="16" TextColor="Gray" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Entry Placeholder="Nowy składnik" x:Name="Ing" FontSize="16" />
+
+            <Button Text="Dodaj składnik" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="10" Clicked="AddIngredient" />
+            <Button Text="Zapisz" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="10" Clicked="SaveEditDish" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
